@@ -23,7 +23,7 @@ class TodoListController extends GetxController {
         name: _textFieldController.text,
         time: Duration.zero,
         color: selectedColor,
-    image: imageAssets[Random().nextInt(3)]);
+        image: imageAssets[Random().nextInt(3)]);
     todoList.add(todoItem);
     update([updateList]);
   }

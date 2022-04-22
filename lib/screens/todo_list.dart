@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:todo_app/getx/todo_list_controller.dart';
-import 'package:todo_app/models/todo_item.dart';
 import 'package:todo_app/widgets/task_row.dart';
 
 class TodoList extends StatelessWidget {
@@ -16,19 +15,27 @@ class TodoList extends StatelessWidget {
       body: GetBuilder<TodoListController>(
           id: _todoListController.updateList,
           builder: (controller) {
-            return ListView.builder(
-              itemBuilder: (BuildContext context, int index) {
-                return TaskRow(
-                    todoItem: _todoListController.todoList[index],
-                    onStartStop: () {
-                      if (!_todoListController
-                          .checkCurrentTimerRunning(index)) {
-                        _todoListController.startTimer(index);
-                      }
-                    });
-              },
-              itemCount: _todoListController.todoList.length,
-            );
+            return _todoListController.todoList.isEmpty
+                ? const Center(
+                    child: Text(
+                      "No tasks added",
+                      style:
+                          TextStyle(fontSize: 24, fontWeight: FontWeight.w500),
+                    ),
+                  )
+                : ListView.builder(
+                    itemBuilder: (BuildContext context, int index) {
+                      return TaskRow(
+                          todoItem: _todoListController.todoList[index],
+                          onStartStop: () {
+                            if (!_todoListController
+                                .checkCurrentTimerRunning(index)) {
+                              _todoListController.startTimer(index);
+                            }
+                          });
+                    },
+                    itemCount: _todoListController.todoList.length,
+                  );
           }),
       floatingActionButton: FloatingActionButton(
           onPressed: () => _todoListController.displayDialog(context),
