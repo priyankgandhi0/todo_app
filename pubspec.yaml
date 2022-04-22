@@ -38,6 +38,9 @@ dependencies:
   #state_management
   get: ^4.6.1
 
+  #color_picker
+  flutter_colorpicker: ^1.0.3
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
