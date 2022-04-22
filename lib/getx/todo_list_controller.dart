@@ -9,6 +9,7 @@ class TodoListController extends GetxController {
   final String updateTime = "updateTime";
   int selectedTask = -1;
   Timer? timer;
+  List<String> imageAssets = ["assets/1.png", "assets/2.png", "assets/3.png"];
 
   void addTask(String title) {
     TodoItem todoItem = TodoItem(name: title, time: Duration.zero);

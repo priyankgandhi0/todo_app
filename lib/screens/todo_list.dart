@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:todo_app/getx/todo_list_controller.dart';
@@ -51,17 +53,28 @@ class TodoList extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              GetBuilder<TodoListController>(
-                builder: (controller) {
-                  return Text(
-                    _todoListController.todoList[index].timeToString == null
-                        ? _todoListController
-                            .getMinutesWithSeconds(todoItem.time)
-                        : _todoListController.todoList[index].timeToString!,
-                    style: const TextStyle(fontSize: 16),
-                  );
-                },
-                id: _todoListController.updateTime,
+              Wrap(
+                crossAxisAlignment: WrapCrossAlignment.center,
+                children: [
+                  GetBuilder<TodoListController>(
+                    builder: (controller) {
+                      return Text(
+                        _todoListController.todoList[index].timeToString == null
+                            ? _todoListController
+                                .getMinutesWithSeconds(todoItem.time)
+                            : _todoListController.todoList[index].timeToString!,
+                        style: const TextStyle(fontSize: 16),
+                      );
+                    },
+                    id: _todoListController.updateTime,
+                  ),
+                  const SizedBox(width: 5),
+                  Image.asset(
+                    _todoListController.imageAssets[Random().nextInt(3)],
+                    width: 24,
+                    height: 24,
+                  )
+                ],
               ),
               ElevatedButton(
                 onPressed: () {
